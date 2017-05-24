@@ -17,7 +17,7 @@ namespace KnowledgeTester
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //base.OnStartup(e);
+            base.OnStartup(e);
             IApplicationContext context = ContextRegistry.GetContext();
             MainWindow = context.GetObject<MainWindow>();
             MainWindow.Show();

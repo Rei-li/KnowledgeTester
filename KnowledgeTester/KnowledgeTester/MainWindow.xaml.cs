@@ -24,18 +24,17 @@ namespace KnowledgeTester
     public partial class MainWindow : Window
     {
         public IUserService UserService { get; set; }
-       
+        public IFormsManager FormsManager { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            //IApplicationContext ctx = ContextRegistry.GetContext("KnowledgeTester");
-            //// Testing
-            //UserService = (UserService)ctx.GetObject("aCardDeck");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            UserService.SaveUser();
+            FormsManager.Show("Register");
+            //UserService.SaveUser();
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
