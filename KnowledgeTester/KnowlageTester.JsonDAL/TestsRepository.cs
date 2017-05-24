@@ -5,23 +5,25 @@ using KnowledgeTester.Model;
 
 namespace KnowlageTester.JsonDAL
 {
-    public class TestsRepository: ITestsRepository
+    public class TestsRepository: Repository<Test>, ITestsRepository
     {
-         private readonly Repository<Test> _repo = new Repository<Test>(ConfigurationManager.AppSettings["TestsCollectionFolder"]);
+        //private readonly Repository<Test> _repo = new Repository<Test>(ConfigurationManager.AppSettings["TestsCollectionFolder"]);
+
+        public override string CollectionPath => ConfigurationManager.AppSettings["TestsCollectionFolder"];
 
         public IList<Test> GetTests()
         {
-            return _repo.GetAllItems();
+            return GetAllItems();
         }
 
         public Test GetTest(Guid id)
         {
-            return _repo.GetItem(id);
+            return GetItem(id);
         }
 
         public void SaveTest(Test test)
         {
-            _repo.SaveItem(test);
+            SaveItem(test);
         }
 
     }

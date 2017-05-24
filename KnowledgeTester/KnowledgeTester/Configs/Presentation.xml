@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+  <object id="FrameExternal" type="System.Windows.Controls.Frame, PresentationFramework" singleton="true"/>
+
+ 
+
+  <!--MainWindow-->
+
+  <!--<object id="MainWindowViewModel" type="Fridgecalc.Shell.ViewModels.MainWindowViewModel, Fridgecalc" parent="ViewModelBase" singleton="true" autowire="constructor" init-method="Init" />-->
+
+  <object id="MainWindow" type="KnowledgeTester.MainWindow, KnowledgeTester" singleton="true"  autowire="constructor" >
+    <property name="UserService" ref="UserService" />
+  </object>
+
+  <!--View Models-->
+
+  <!--<object id="AirCoolerViewModel" type="Fridgecalc.Shell.ViewModels.AirCoolerViewModel, Fridgecalc" parent="ViewModelBase" singleton="false" init-method="Init" >
+    <property name="MinCoolingCapacity" value="${filters.coolingCapacity.min}" />
+    <property name="MaxCoolingCapacity" value="${filters.coolingCapacity.max}" />
+    <property name="IncrementCoolingCapacity" value="${filters.coolingCapacity.increment}" />
+  </object>-->
+
+
+  <!--Views-->
+
+  <!--<object id="NavigationViewBase" type="Fridgecalc.Shell.Views.NavigationViewBase, Fridgecalc" abstract="true"/>
+
+  <object id="WindowViewBase" type="Fridgecalc.Shell.Views.WindowViewBase, Fridgecalc" abstract="true" />-->
+
+
+
+</objects>

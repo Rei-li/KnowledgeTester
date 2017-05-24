@@ -11,23 +11,18 @@ using Newtonsoft.Json.Linq;
 
 namespace KnowlageTester.JsonDAL
 {
-    public class Repository<T> 
+    public abstract class Repository<T> 
     {
         private string file = "{0}.json";
         private readonly string _directoryPath = ConfigurationManager.AppSettings["RepositoryPath"];
         private readonly IList<T> _items = new List<T>();
-        private readonly string _collectionPath;
+        public virtual string CollectionPath { set; get; }
 
-        public Repository(string collectionPath)
-        {
-            _collectionPath = collectionPath;
-        }
-
-        public  IList<T> GetAllItems()
+      public  IList<T> GetAllItems()
         {
             if (Directory.Exists(_directoryPath))
             {
-                string[] fileEntries = Directory.GetFiles(_directoryPath + _collectionPath);
+                string[] fileEntries = Directory.GetFiles(_directoryPath + CollectionPath);
                 foreach (string fileName in fileEntries)
                 {
                    _items.Add(FormItem(fileName));
@@ -39,7 +34,7 @@ namespace KnowlageTester.JsonDAL
 
         public T GetItem(Guid id)
         {
-            var filePath = _directoryPath + _collectionPath + String.Format(file, id);
+            var filePath = _directoryPath + CollectionPath + String.Format(file, id);
             return FormItem(filePath);
         }
 
@@ -52,7 +47,7 @@ namespace KnowlageTester.JsonDAL
 
         public void SaveItem(T item)
         {
-            var path = _directoryPath + _collectionPath;
+            var path = _directoryPath + CollectionPath;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -62,7 +57,7 @@ namespace KnowlageTester.JsonDAL
             var baseItem = item as BaseItem;
             if (baseItem != null)
             {
-                File.WriteAllText(_directoryPath + String.Format(file, baseItem.Id), jason);
+                File.WriteAllText(path + String.Format(file, baseItem.Id), jason);
             }
         }
     }

@@ -4,7 +4,7 @@ using KnowledgeTester.Model;
 
 namespace KnowlageTester.JsonDAL
 {
-    interface IUsersRepository
+    public interface IUsersRepository
     {
         IList<User> GetUsers();
         User GetUser(Guid id);

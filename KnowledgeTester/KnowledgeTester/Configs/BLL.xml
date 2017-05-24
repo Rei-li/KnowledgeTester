@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects xmlns="http://www.springframework.net"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+
+  <!--<object id="ResourceManager" type="Fridgecalc.Shell.Managers.ResourceManager, Fridgecalc" singleton="true" />
+
+  <object id="CommandQueryDispatcher" type="FridgeCalc.Logic.CommandQueryDispatcher, FridgeCalc.Logic" singleton="true">
+    <property name="SessionManager" ref="ISessionManager" />
+  </object>-->
+
+  <!--Blo's-->
+
+  <!--<object id="BloBase" type="FridgeCalc.Logic.Blos.BloBase, FridgeCalc.Logic" abstract="true" init-method="Init">
+    <property name="CommandQueryRegistrator" ref="CommandQueryDispatcher" />
+    <property name="ResourceManager" ref="ResourceManager" />
+  </object>-->
+
+
+
+  <object id="UserService" type="KnowledgeTester.BLL.UserService, KnowledgeTester.BLL" singleton="true" autowire="constructor" />
+
+ 
+
+</objects>

@@ -6,12 +6,14 @@ using KnowledgeTester.Model;
 
 namespace KnowlageTester.JsonDAL
 {
-    public class UsersRepository : IUsersRepository
+    public class UsersRepository : Repository<User>,  IUsersRepository
     {
-        private readonly Repository<User> _repo = new Repository<User>(ConfigurationManager.AppSettings["UsersCollectionFolder"]);
+        //private readonly Repository<User> _repo = new Repository<User>(ConfigurationManager.AppSettings["UsersCollectionFolder"]);
+        public override string CollectionPath => ConfigurationManager.AppSettings["UsersCollectionFolder"];
+
         public User GetUser(Guid id)
         {
-            return _repo.GetItem(id);
+            return GetItem(id);
         }
 
         public User GetUserByLogin(string login)
@@ -26,12 +28,12 @@ namespace KnowlageTester.JsonDAL
 
         public IList<User> GetUsers()
         {
-            return _repo.GetAllItems();
+            return GetAllItems();
         }
 
         public void SaveUser(User user)
         {
-            _repo.SaveItem(user);
+            SaveItem(user);
         }
     }
 }
