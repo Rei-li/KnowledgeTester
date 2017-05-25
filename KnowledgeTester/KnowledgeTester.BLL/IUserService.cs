@@ -8,6 +8,6 @@ namespace KnowledgeTester.BLL
 {
     public interface IUserService
     {
-        void SaveUser();
+        void SaveUser(string name, string lastName, string login, string password);
     }
 }

@@ -30,8 +30,8 @@ namespace KnowledgeTester.Views
 
         protected WindowViewBase()
         {
-            Width = 1024;
-            Height = 768;
+            Width = 525;
+            Height = 350;
         }
 
         protected override void OnClosing(CancelEventArgs e)

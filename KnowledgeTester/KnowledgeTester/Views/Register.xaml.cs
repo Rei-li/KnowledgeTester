@@ -17,7 +17,8 @@ namespace KnowledgeTester.Views
 
         private void SubmitButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            UserService.SaveUser();
+            UserService.SaveUser(NameTextBox.Text, LastNameTextBox.Text, LoginTextBox.Text, PasswordTextBox.Text);
+            this.Close();
         }
     }
 }
