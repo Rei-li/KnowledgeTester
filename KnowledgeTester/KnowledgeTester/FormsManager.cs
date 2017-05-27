@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using KnowledgeTester.Views;
 using Spring.Context;
 
 namespace KnowledgeTester
@@ -44,11 +45,11 @@ namespace KnowledgeTester
                     }
                 }
 
-                //IInitView initView = view as IInitView;
-                //if (initView != null)
-                //{
-                //    initView.Init(data);
-                //}
+                IInitView initView = view as IInitView;
+                if (initView != null)
+                {
+                    initView.Init(data);
+                }
             }
 
             if (window != null)
@@ -82,11 +83,11 @@ namespace KnowledgeTester
                 {
                     window.Owner = owner;
 
-                    //IInitView initView = view as IInitView;
-                    //if (initView != null)
-                    //{
-                    //    initView.Init(data);
-                    //}
+                    IInitView initView = view as IInitView;
+                    if (initView != null)
+                    {
+                        initView.Init(data);
+                    }
 
                     window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 

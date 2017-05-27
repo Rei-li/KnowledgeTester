@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using KnowledgeTester.BLL;
+using KnowledgeTester.Views;
 using Spring.Context;
 using Spring.Context.Support;
 
@@ -21,25 +22,11 @@ namespace KnowledgeTester
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : WindowViewBase
     {
-        public IUserService UserService { get; set; }
-        public IFormsManager FormsManager { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            FormsManager.Show("Register");
-            //UserService.SaveUser();
-        }
-
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
-        {
-
         }
         
     }

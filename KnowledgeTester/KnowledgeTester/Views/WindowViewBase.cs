@@ -5,28 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using KnowledgeTester.ViewModels;
 
 namespace KnowledgeTester.Views
 {
     public abstract class WindowViewBase : Window
     {
-        //private ViewModelBase _viewModel;
+        private ViewModelBase _viewModel;
 
-        //public ViewModelBase ViewModel
-        //{
-        //    get { return _viewModel; }
-        //    set
-        //    {
-        //        _viewModel = value;
+        public ViewModelBase ViewModel
+        {
+            get { return _viewModel; }
+            set
+            {
+                _viewModel = value;
 
-        //        if (_viewModel != null)
-        //        {
-        //            _viewModel.View = this;
-        //        }
+                if (_viewModel != null)
+                {
+                    _viewModel.View = this;
+                }
 
-        //        DataContext = _viewModel;
-        //    }
-        //}
+                DataContext = _viewModel;
+            }
+        }
 
         protected WindowViewBase()
         {

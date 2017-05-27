@@ -1,17 +1,18 @@
-﻿<Window x:Class="KnowledgeTester.MainWindow"
+﻿<views:WindowViewBase x:Class="KnowledgeTester.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KnowledgeTester"
+        xmlns:views="clr-namespace:KnowledgeTester.Views"
         mc:Ignorable="d"
         Title="Knowledge Tester" Height="350" Width="525">
     <Grid>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top">
             <MenuItem Header="User">
-                <MenuItem Header="New User" Click="MenuItem_Click" ></MenuItem>
+                <MenuItem Header="New User" Command="{Binding AddNewUserCommand}" ></MenuItem>
                 <Separator />
-                <MenuItem Header="My Results" Click="MenuItem_Click_1" ></MenuItem>
+                <MenuItem Header="My Results" ></MenuItem>
             </MenuItem>
             <MenuItem Header="Test" >
                 <MenuItem Header="New Test" ></MenuItem>
@@ -33,4 +34,4 @@
         </ListView>
 
     </Grid>
-</Window>
+</views:WindowViewBase>
