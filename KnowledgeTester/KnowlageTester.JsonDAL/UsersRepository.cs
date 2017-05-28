@@ -16,9 +16,9 @@ namespace KnowlageTester.JsonDAL
             return GetItem(id);
         }
 
-        public User GetUserByLogin(string login)
+        public User GetUserByLoginPassword(string login, string password)
         {
-            var users = GetUsers().Where(s => s.Login.Equals(login)).ToList();
+            var users = GetUsers().Where(s => s.Login.Equals(login) && s.Password.Equals(password)).ToList();
             if (users.Any())
             {
                 return users.First();

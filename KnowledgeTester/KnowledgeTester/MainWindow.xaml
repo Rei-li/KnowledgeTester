@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KnowledgeTester"
         xmlns:views="clr-namespace:KnowledgeTester.Views"
+        xmlns:converters="clr-namespace:KnowledgeTester.Converters"
         mc:Ignorable="d"
         Title="Knowledge Tester" Height="350" Width="525">
+
+    
     <Grid>
+        <Grid.Resources>
+            <converters:BoolToVisibleOrHidden x:Key="BoolToVisConverter"/>
+        </Grid.Resources>
         <Menu x:Name="Menu" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top">
             <MenuItem Header="User">
                 <MenuItem Header="New User" Command="{Binding AddNewUserCommand}" ></MenuItem>
@@ -19,12 +25,22 @@
             </MenuItem>
         </Menu>
 
-        <Label x:Name="LoginLabel" Content="Login" HorizontalAlignment="Left" Height="30" Margin="200,0,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="30" Margin="240,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+        <Label x:Name="LoginLabel" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Login" HorizontalAlignment="Left" Height="30" Margin="200,0,0,0" VerticalAlignment="Top" Width="40"/>
+        <TextBox x:Name="LoginTextBox" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Height="30" Margin="240,0,0,0" TextWrapping="Wrap" Text="{Binding Login}" VerticalAlignment="Top" Width="60"/>
 
-        <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Height="30" Margin="300,0,0,0" VerticalAlignment="Top" Width="60"/>
-        <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="30" Margin="360,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
-        <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+        <!--TODO: add PasswordBox -->
+        <Label x:Name="PasswordLabel" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Password" HorizontalAlignment="Left" Height="30" Margin="300,0,0,0" VerticalAlignment="Top" Width="60"/>
+        <TextBox x:Name="PasswordTextBox" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Height="30" Margin="360,0,0,0" TextWrapping="Wrap" Text="{Binding Password}" VerticalAlignment="Top" Width="80"/>
+        <!--<PasswordBox  x:Name="PasswordTextBox" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Height="30" Margin="360,0,0,0"  Password="{Binding Password}" VerticalAlignment="Top" Width="80"/>-->
+      
+        <Button x:Name="LoginButton" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+
+        <Label x:Name="HalloLabel" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Hallo, " HorizontalAlignment="Left" Height="30" Margin="200,0,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="UserNameLabel" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="{Binding CurrentUser.Name, Mode=Twoway}" HorizontalAlignment="Left" Height="30" Margin="240,0,0,0" VerticalAlignment="Top" Width="40"/>
+        <Button x:Name="LogoutButton" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LogoutCommand}" Content="Logout" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+
+        
+
         <ListView x:Name="TestsListView" HorizontalAlignment="Left" Height="250" VerticalAlignment="Top" Width="450" Margin="35,60,0,0">
             <ListView.View>
                 <GridView>

@@ -9,7 +9,9 @@
 
   <!--MainWindow-->
 
-  <object id="MainWindowViewModel" type="KnowledgeTester.ViewModels.MainWindowViewModel, KnowledgeTester" parent="ViewModelBase" singleton="true" autowire="constructor"  />
+  <object id="MainWindowViewModel" type="KnowledgeTester.ViewModels.MainWindowViewModel, KnowledgeTester" parent="ViewModelBase" singleton="true" autowire="constructor"  >
+    <property name="UserService" ref="UserService" />
+  </object>
 
   <object id="MainWindow" type="KnowledgeTester.MainWindow, KnowledgeTester" singleton="true"  autowire="constructor" >
      <property name="ViewModel" ref="MainWindowViewModel" />

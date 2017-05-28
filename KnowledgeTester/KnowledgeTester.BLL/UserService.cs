@@ -10,6 +10,7 @@ namespace KnowledgeTester.BLL
     public class UserService : IUserService
     {
         private readonly IUsersRepository _usersRepo;
+        private User _currentUser;
 
         public UserService(IUsersRepository usersRepo)
         {
@@ -33,6 +34,26 @@ namespace KnowledgeTester.BLL
             }
 
 
+        }
+
+        public User Login(string login, string password)
+        {
+            using (MD5 md5Hash = MD5.Create())
+            {
+                _currentUser = _usersRepo.GetUserByLoginPassword(login, GetMd5Hash(md5Hash, password));
+            }
+            return GetCurrentUser();
+        }
+
+        public User GetCurrentUser()
+        {
+            return _currentUser;
+        }
+
+        public User Logout()
+        {
+            _currentUser = null;
+            return GetCurrentUser();
         }
 
 
