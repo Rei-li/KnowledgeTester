@@ -1,0 +1,31 @@
+﻿<local:WindowViewBase x:Class="KnowledgeTester.Views.CreateTest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KnowledgeTester.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="300"
+      Title="CreateTest">
+
+    <Grid>
+        <Label x:Name="ThemeLabel" Content="Theme" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
+        <TextBox x:Name="ThemeTextBox" Text ="{Binding Theme, Mode=Twoway}"  HorizontalAlignment="Left" Height="30" Margin="105,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
+
+        <Label x:Name="QestionTaskLabel" Content="Task" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
+        <TextBox x:Name="QestionTaskTextBox" HorizontalAlignment="Left" Height="30" Margin="105,90,0,0" TextWrapping="Wrap" Text="{Binding QestionTask, Mode=Twoway}" VerticalAlignment="Top" Width="170"/>
+
+        <Label x:Name="QestionNotesLabel" Content="Notes" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
+        <TextBox x:Name="QestionNotesTextBox" HorizontalAlignment="Left" Height="30" Margin="105,150,0,0" TextWrapping="Wrap" Text="{Binding QestionNotes, Mode=Twoway}" VerticalAlignment="Top" Width="170"/>
+
+        <GroupBox x:Name="GroupBox" Header="Answer" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="198" Width="300">
+            <CheckBox x:Name="IsCorrectCheckBox" IsChecked="{Binding IsAnswerCorrect, Mode=Twoway}" Content="Correct" HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top"/>
+        </GroupBox>
+
+        <TextBox x:Name="AnswerTextBox" HorizontalAlignment="Left" Height="56" Margin="0,240,0,0" TextWrapping="Wrap" Text="{Binding Answer, Mode=Twoway}" VerticalAlignment="Top" Width="290"/>
+        <Button x:Name="AddAnswerButton" Content="Add Answer" Command="{Binding AddAnswerCommand}" HorizontalAlignment="Left" Margin="139,313,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="AddTaskButton" Content="Add Task"  Command="{Binding AddTaskCommand}" HorizontalAlignment="Left" Margin="40,500,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="SaveTestButton" Content="Save Test"  Command="{Binding SaveTestCommand}" HorizontalAlignment="Left" Margin="180,500,0,0" VerticalAlignment="Top" Width="75"/>
+
+    </Grid>
+</local:WindowViewBase>

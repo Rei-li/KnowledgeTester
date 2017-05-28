@@ -54,6 +54,7 @@ namespace KnowledgeTester.ViewModels
 
         public ICommand ExitCommand { get; private set; }
         public ICommand AddNewUserCommand { get; private set; }
+        public ICommand AddNewTestCommand { get; private set; }
 
         public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
@@ -62,6 +63,7 @@ namespace KnowledgeTester.ViewModels
         {
             ExitCommand = new Command((p) => Application.Current.Shutdown());
             AddNewUserCommand = new Command((p) => FormsManager.Show(ViewsNames.REGISTER));
+            AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST));
 
             LoginCommand = new Command(OnLoginCommand);
             LogoutCommand = new Command(OnLogoutCommand);

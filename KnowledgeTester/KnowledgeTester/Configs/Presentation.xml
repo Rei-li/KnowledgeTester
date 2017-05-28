@@ -5,7 +5,7 @@
 
   <object id="FrameExternal" type="System.Windows.Controls.Frame, PresentationFramework" singleton="true"/>
   <object id="FormsManager" type="KnowledgeTester.FormsManager, KnowledgeTester" singleton="true" />
- 
+
 
   <!--MainWindow-->
 
@@ -14,26 +14,35 @@
   </object>
 
   <object id="MainWindow" type="KnowledgeTester.MainWindow, KnowledgeTester" singleton="true"  autowire="constructor" >
-     <property name="ViewModel" ref="MainWindowViewModel" />
+    <property name="ViewModel" ref="MainWindowViewModel" />
   </object>
 
   <!--View Models-->
 
-   <object id="ViewModelBase" type="KnowledgeTester.ViewModels.ViewModelBase, ViewModels" abstract="true">
+  <object id="ViewModelBase" type="KnowledgeTester.ViewModels.ViewModelBase, ViewModels" abstract="true">
     <property name="FormsManager" ref="FormsManager" />
   </object>
-    
+
   <object id="RegistrationViewModel" type="KnowledgeTester.ViewModels.RegistrationViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
     <property name="UserService" ref="UserService" />
   </object>
 
+  <object id="TestCreationViewModel" type="KnowledgeTester.ViewModels.TestCreationViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
+    <property name="UserService" ref="UserService" />
+    <property name="TestService" ref="TestService" />
+  </object>
+
 
   <!--Views-->
-  
+
   <object id="WindowViewBase" type="KnowledgeTester.Views.WindowViewBase, KnowledgeTester" abstract="true" />
 
   <object id="Register" type="KnowledgeTester.Views.Register, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="RegistrationViewModel" />
+  </object>
+
+  <object id="CreateTest" type="KnowledgeTester.Views.CreateTest, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="TestCreationViewModel" />
   </object>
 
 </objects>
