@@ -28,6 +28,9 @@ namespace KnowledgeTester
         {
             InitializeComponent();
         }
-        
+        //public void Init(object data)
+        //{
+        //    ViewModel.Init(data);
+        //}
     }
 }

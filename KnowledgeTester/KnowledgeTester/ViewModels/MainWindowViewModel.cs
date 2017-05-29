@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace KnowledgeTester.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         public IUserService UserService { get; set; }
+        public ITestService TestService { get; set; }
 
         private User _currentUser;
 
@@ -23,6 +25,27 @@ namespace KnowledgeTester.ViewModels
             set
             {
                 _currentUser = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Test _selectedTest;
+        public Test SelectedTest
+        {
+            get { return _selectedTest; }
+            set
+            {
+                _selectedTest = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Test> _availableTests;
+        public ObservableCollection<Test> AvailableTests {
+            get { return _availableTests; }
+            set
+            {
+                _availableTests = value;
                 NotifyPropertyChanged();
             }
         }
@@ -56,6 +79,8 @@ namespace KnowledgeTester.ViewModels
         public ICommand AddNewUserCommand { get; private set; }
         public ICommand AddNewTestCommand { get; private set; }
 
+        public ICommand StartTestCommand { get; private set; }
+
         public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
 
@@ -65,10 +90,17 @@ namespace KnowledgeTester.ViewModels
             AddNewUserCommand = new Command((p) => FormsManager.Show(ViewsNames.REGISTER));
             AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST));
 
+            StartTestCommand = new Command(OnStartTestCommand);
+
             LoginCommand = new Command(OnLoginCommand);
             LogoutCommand = new Command(OnLogoutCommand);
             
             IsLoginButtonVisible = true;
+        }
+
+        private void OnStartTestCommand(object o)
+        {
+            var test = SelectedTest;
         }
 
         private void OnLoginCommand(object o)
@@ -84,7 +116,15 @@ namespace KnowledgeTester.ViewModels
             IsLoginButtonVisible = (CurrentUser == null);
             IsLogoutButtonVisible = (CurrentUser != null);
         }
-        
+        public void Init()
+        {
+            AvailableTests = new ObservableCollection<Test>();
+            foreach (var test in TestService.GetTests())
+            {
+                AvailableTests.Add(test);
+            }
+            
+        }
 
     }
 }
