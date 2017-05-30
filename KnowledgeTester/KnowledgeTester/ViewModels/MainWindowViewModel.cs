@@ -88,9 +88,9 @@ namespace KnowledgeTester.ViewModels
         {
             ExitCommand = new Command((p) => Application.Current.Shutdown());
             AddNewUserCommand = new Command((p) => FormsManager.Show(ViewsNames.REGISTER));
-            AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST));
+            AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST).Closing += MainWindowViewModel_Closing);
 
-            StartTestCommand = new Command(OnStartTestCommand);
+            StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, null));
 
             LoginCommand = new Command(OnLoginCommand);
             LogoutCommand = new Command(OnLogoutCommand);
@@ -98,9 +98,13 @@ namespace KnowledgeTester.ViewModels
             IsLoginButtonVisible = true;
         }
 
-        private void OnStartTestCommand(object o)
+        private void MainWindowViewModel_Closing(object sender, CancelEventArgs e)
         {
-            var test = SelectedTest;
+            AvailableTests.Clear();
+            foreach (var test in TestService.GetTests())
+            {
+                AvailableTests.Add(test);
+            }
         }
 
         private void OnLoginCommand(object o)

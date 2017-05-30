@@ -32,6 +32,10 @@
     <property name="UserService" ref="UserService" />
     <property name="TestService" ref="TestService" />
   </object>
+  
+  <object id="TestRunViewModel" type="KnowledgeTester.ViewModels.TestRunViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
+    <property name="UserTestService" ref="UserTestService" />
+  </object>
 
 
   <!--Views-->
@@ -44,6 +48,10 @@
 
   <object id="CreateTest" type="KnowledgeTester.Views.CreateTest, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="TestCreationViewModel" />
+  </object>
+  
+ <object id="TestRun" type="KnowledgeTester.Views.TestRun, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="TestRunViewModel" />
   </object>
 
 </objects>

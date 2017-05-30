@@ -16,12 +16,12 @@ namespace KnowledgeTester
     {
         private Dictionary<string, Window> _openWindows = new Dictionary<string, Window>();
 
-        public void Show(string viewName)
+        public Window Show(string viewName)
         {
-            Show(viewName, null, null, null);
+           return Show(viewName, null, null, null);
         }
 
-        public void Show(string viewName, object id, object data, Window owner)
+        public Window Show(string viewName, object id, object data, Window owner)
         {
             string viewId = string.Format("{0}_{1}", viewName, id);
 
@@ -67,6 +67,7 @@ namespace KnowledgeTester
                     window.WindowState = WindowState.Normal;
                 }
             }
+            return window;
         }
 
         public object ShowModal(string viewName, object data, Window owner)

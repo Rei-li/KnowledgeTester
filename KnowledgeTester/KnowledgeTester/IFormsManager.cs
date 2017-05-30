@@ -11,7 +11,7 @@ namespace KnowledgeTester
         /// Показать форму
         /// </summary>
         /// <param name="viewName">Название формы для получения из IoC контейнера</param>
-        void Show(string viewName);
+        Window Show(string viewName);
 
         /// <summary>
         /// Показать форму
@@ -20,7 +20,7 @@ namespace KnowledgeTester
         /// <param name="id">Идентификатор отображаемых данных (одна форма новые данные открывает в новом окне)</param>
         /// <param name="data">Данные для формы</param>
         /// <param name="owner">Владелец формы, при закрытии которой должна закрыться и эта форма</param>
-        void Show(string viewName, object id, object data, Window owner);
+        Window Show(string viewName, object id, object data, Window owner);
 
         /// <summary>
         /// Показать форму как модальное окно

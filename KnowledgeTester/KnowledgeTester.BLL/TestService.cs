@@ -8,10 +8,10 @@ using KnowledgeTester.Model;
 
 namespace KnowledgeTester.BLL
 {
-    class TestService: ITestService
+    class TestService : ITestService
     {
         private readonly ITestsRepository _testsRepo;
-      
+
         public TestService(ITestsRepository testsRepo)
         {
             _testsRepo = testsRepo;
@@ -20,11 +20,12 @@ namespace KnowledgeTester.BLL
         public void SaveTest(string theme, string author, IList<Question> questions)
         {
             _testsRepo.SaveTest(new Test
-                {
-                    Id = Guid.NewGuid(),
-                    Theme = theme,
-                    Author = author,
-                    Question = questions.ToList()
+            {
+                Version = 1,
+                Id = Guid.NewGuid(),
+                Theme = theme,
+                Author = author,
+                Question = questions.ToList()
             });
         }
 

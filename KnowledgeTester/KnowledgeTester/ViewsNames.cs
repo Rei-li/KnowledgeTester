@@ -10,6 +10,7 @@ namespace KnowledgeTester
     {
         public static readonly string REGISTER = "Register";
         public static readonly string CREATE_TEST = "CreateTest";
+        public static readonly string TEST_RUN = "TestRun";
 
     }
 }

@@ -11,5 +11,6 @@
 
   <object id="UsersRepository" type="KnowlageTester.JsonDAL.UsersRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />
   <object id="TestsRepository" type="KnowlageTester.JsonDAL.TestsRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />
+  <object id="UserTestsRepository" type="KnowlageTester.JsonDAL.UserTestsRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />
   
 </objects>

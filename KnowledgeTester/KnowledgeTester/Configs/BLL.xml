@@ -20,6 +20,7 @@
 
   <object id="UserService" type="KnowledgeTester.BLL.UserService, KnowledgeTester.BLL" singleton="true" autowire="constructor" />
   <object id="TestService" type="KnowledgeTester.BLL.TestService, KnowledgeTester.BLL" singleton="true" autowire="constructor" />
+  <object id="UserTestService" type="KnowledgeTester.BLL.UserTestService, KnowledgeTester.BLL" singleton="true" autowire="constructor" />
 
  
 
