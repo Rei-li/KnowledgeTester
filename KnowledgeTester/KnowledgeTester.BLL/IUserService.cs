@@ -14,6 +14,7 @@ namespace KnowledgeTester.BLL
         User Login(string login, string password);
         User Logout();
         User GetCurrentUser();
+        void SaveUserTest(Test test, List<UserAnswer> answers);
 
     }
 }

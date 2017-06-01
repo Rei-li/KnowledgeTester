@@ -98,7 +98,7 @@ namespace KnowledgeTester.ViewModels
             var number = 1;
             if (_questions.Any())
             {
-                number = _questions.Last().Number++;
+                number = _questions.Last().Number + 1;
             }
             _questions.Add(new Question() {Id = Guid.NewGuid(), Task = QestionTask, Notes = QestionNotes, Number = number, Answers = _answers});
             _answers = new List<Answer>();

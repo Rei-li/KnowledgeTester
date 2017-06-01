@@ -32,9 +32,17 @@ namespace KnowledgeTester.BLL
                     TakenTests = new List<UserTest>()
                 });
             }
-
-
         }
+
+        private void SaveUser(User user)
+        {
+            if (user != null)
+            {
+                _usersRepo.SaveUser(user);
+            }
+           
+        }
+
 
         public User Login(string login, string password)
         {
@@ -54,6 +62,20 @@ namespace KnowledgeTester.BLL
         {
             _currentUser = null;
             return GetCurrentUser();
+        }
+
+        public void SaveUserTest(Test test, List<UserAnswer> answers)
+        {
+            _currentUser.TakenTests.Add(new UserTest
+            {
+                Id = Guid.NewGuid(),
+                Test = test,
+                Answers = answers,
+                Score = 0
+
+            });
+
+            SaveUser(_currentUser);
         }
 
 

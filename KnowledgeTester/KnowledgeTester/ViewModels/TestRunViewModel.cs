@@ -12,7 +12,7 @@ namespace KnowledgeTester.ViewModels
 {
     class TestRunViewModel : ViewModelBase
     {
-        public IUserTestService UserTestService { get; set; }
+        public IUserService UserService { get; set; }
 
         private Test _test;
         private List<UserAnswer> _userAnswers;
@@ -118,9 +118,9 @@ namespace KnowledgeTester.ViewModels
         private void OnNextCommand(object o)
         {
             _userAnswers.Add(new UserAnswer() { Id = Guid.NewGuid(), Answer = _selectedAnswer, QuestionNumber = Question.Number });
-            int number = Question.Number++;
+            int number = Question.Number + 1;
             SetQuestion(number);
-            if (_test.Question.SingleOrDefault(s => s.Number.Equals(number++)) != null)
+            if (_test.Question.SingleOrDefault(s => s.Number.Equals(number + 1)) != null)
             {
                 IsNextButtonVisible = true;
                 IsSaveButtonVisible = false;
@@ -134,7 +134,7 @@ namespace KnowledgeTester.ViewModels
 
         private void OnSaveCommand(object o)
         {
-            UserTestService.SaveUserTest(_test, _userAnswers);
+            UserService.SaveUserTest(_test, _userAnswers);
             View.Close();
         }
 
@@ -149,7 +149,7 @@ namespace KnowledgeTester.ViewModels
                 int number = 1;
                 SetQuestion(number);
 
-                if (_test.Question.SingleOrDefault(s => s.Number.Equals(number++)) != null)
+                if (_test.Question.SingleOrDefault(s => s.Number.Equals(number + 1)) != null)
                 {
                     IsNextButtonVisible = true;
                     IsSaveButtonVisible = false;

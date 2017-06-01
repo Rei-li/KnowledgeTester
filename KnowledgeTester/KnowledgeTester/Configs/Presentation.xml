@@ -34,7 +34,7 @@
   </object>
   
   <object id="TestRunViewModel" type="KnowledgeTester.ViewModels.TestRunViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
-    <property name="UserTestService" ref="UserTestService" />
+    <property name="UserService" ref="UserService" />
   </object>
 
 

@@ -21,7 +21,7 @@ namespace KnowledgeTester.BLL
         {
             _userTestsRepo.SaveTest(new UserTest
             {
-               Id = Guid.NewGuid(),
+                Id = Guid.NewGuid(),
                 Test = test,
                 Answers = answers,
                 Score = 0
