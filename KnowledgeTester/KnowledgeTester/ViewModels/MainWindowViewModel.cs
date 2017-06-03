@@ -80,6 +80,8 @@ namespace KnowledgeTester.ViewModels
         public ICommand AddNewTestCommand { get; private set; }
 
         public ICommand StartTestCommand { get; private set; }
+        public ICommand EditTestCommand { get; private set; }
+        public ICommand DeleteTestCommand { get; private set; }
 
         public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
@@ -90,7 +92,9 @@ namespace KnowledgeTester.ViewModels
             AddNewUserCommand = new Command((p) => FormsManager.Show(ViewsNames.REGISTER));
             AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST).Closing += MainWindowViewModel_Closing);
 
-            StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, null));
+            StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, View));
+            EditTestCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_TEST, SelectedTest.Id, SelectedTest, View));
+            DeleteTestCommand = new Command(OnDeleteTestCommand);
 
             LoginCommand = new Command(OnLoginCommand);
             LogoutCommand = new Command(OnLogoutCommand);
@@ -98,7 +102,18 @@ namespace KnowledgeTester.ViewModels
             IsLoginButtonVisible = true;
         }
 
+        private void OnDeleteTestCommand(object o)
+        {
+            TestService.DeleteTest(SelectedTest);
+            RefreshTestsList();
+        }
+
         private void MainWindowViewModel_Closing(object sender, CancelEventArgs e)
+        {
+            RefreshTestsList();
+        }
+
+        private void RefreshTestsList()
         {
             AvailableTests.Clear();
             foreach (var test in TestService.GetTests())

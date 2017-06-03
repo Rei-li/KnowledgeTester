@@ -9,5 +9,6 @@ namespace KnowlageTester.JsonDAL
         IList<Test> GetTests();
         Test GetTest(Guid id);
         void SaveTest(Test test);
+        void DeleteItem(Guid id);
     }
 }

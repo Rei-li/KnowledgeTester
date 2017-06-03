@@ -76,6 +76,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Res.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EditAnswerViewModel.cs" />
+    <Compile Include="ViewModels\EditTaskViewModel.cs" />
+    <Compile Include="ViewModels\EditTestViewModel.cs" />
     <Compile Include="ViewModels\IClosable.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
@@ -85,6 +88,15 @@
     <Compile Include="ViewsNames.cs" />
     <Compile Include="Views\CreateTest.xaml.cs">
       <DependentUpon>CreateTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditAnswer.xaml.cs">
+      <DependentUpon>EditAnswer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTask.xaml.cs">
+      <DependentUpon>EditTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTest.xaml.cs">
+      <DependentUpon>EditTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IInitView.cs" />
     <Compile Include="Views\Register.xaml.cs">
@@ -107,6 +119,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\CreateTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditAnswer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

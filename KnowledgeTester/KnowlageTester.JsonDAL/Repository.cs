@@ -20,6 +20,7 @@ namespace KnowlageTester.JsonDAL
 
       public  IList<T> GetAllItems()
         {
+            _items.Clear();
             if (Directory.Exists(_directoryPath))
             {
                 string[] fileEntries = Directory.GetFiles(_directoryPath + CollectionPath);
@@ -58,6 +59,15 @@ namespace KnowlageTester.JsonDAL
             if (baseItem != null)
             {
                 File.WriteAllText(path + String.Format(file, baseItem.Id), jason);
+            }
+        }
+
+        public void DeleteItem(Guid id)
+        {
+            var files = Directory.GetFiles(_directoryPath + CollectionPath, String.Format(file, id));
+            foreach (string f in files)
+            {
+                File.Delete(f);
             }
         }
     }

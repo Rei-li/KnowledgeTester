@@ -33,6 +33,21 @@
     <property name="TestService" ref="TestService" />
   </object>
   
+  <object id="EditTestViewModel" type="KnowledgeTester.ViewModels.EditTestViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
+    <property name="UserService" ref="UserService" />
+    <property name="TestService" ref="TestService" />
+  </object>
+  
+  <object id="EditTaskViewModel" type="KnowledgeTester.ViewModels.EditTaskViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
+    <property name="UserService" ref="UserService" />
+    <property name="TestService" ref="TestService" />
+  </object>
+  
+  <object id="EditAnswerViewModel" type="KnowledgeTester.ViewModels.EditAnswerViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
+    <property name="UserService" ref="UserService" />
+    <property name="TestService" ref="TestService" />
+  </object>
+  
   <object id="TestRunViewModel" type="KnowledgeTester.ViewModels.TestRunViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
     <property name="UserService" ref="UserService" />
   </object>
@@ -40,7 +55,7 @@
 
   <!--Views-->
 
-  <object id="WindowViewBase" type="KnowledgeTester.Views.WindowViewBase, KnowledgeTester" abstract="true" />
+  <object id="WindowViewBase" type="KnowledgeTester.Views.WindowViewBase, KnowledgeTester" abstract="true"  />
 
   <object id="Register" type="KnowledgeTester.Views.Register, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="RegistrationViewModel" />
@@ -50,8 +65,20 @@
     <property name="ViewModel" ref="TestCreationViewModel" />
   </object>
   
+  <object id="EditTest" type="KnowledgeTester.Views.EditTest, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="EditTestViewModel" />
+  </object>
+  
  <object id="TestRun" type="KnowledgeTester.Views.TestRun, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="TestRunViewModel" />
+  </object>
+  
+ <object id="EditTask" type="KnowledgeTester.Views.EditTask, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="EditTaskViewModel" />
+  </object>
+  
+ <object id="EditAnswer" type="KnowledgeTester.Views.EditAnswer, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="EditAnswerViewModel" />
   </object>
 
 </objects>

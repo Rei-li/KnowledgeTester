@@ -29,6 +29,11 @@ namespace KnowledgeTester.BLL
             });
         }
 
+        public void SaveTest(Test test)
+        {
+            _testsRepo.SaveTest(test);
+        }
+
         public IList<Test> GetTests()
         {
             return _testsRepo.GetTests();
@@ -37,6 +42,11 @@ namespace KnowledgeTester.BLL
         public Test GetTest(Guid id)
         {
             return _testsRepo.GetTest(id);
+        }
+
+        public void DeleteTest(Test test)
+        {
+            _testsRepo.DeleteItem(test.Id);
         }
     }
 }

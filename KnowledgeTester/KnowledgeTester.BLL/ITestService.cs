@@ -10,7 +10,9 @@ namespace KnowledgeTester.BLL
     public interface ITestService
     {
         void SaveTest(string theme, string author, IList<Question> questions);
+        void SaveTest(Test test);
         IList<Test> GetTests();
         Test GetTest(Guid id);
+        void DeleteTest(Test test);
     }
 }

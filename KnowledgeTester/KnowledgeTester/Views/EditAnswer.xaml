@@ -1,0 +1,17 @@
+﻿<local:WindowViewBase x:Class="KnowledgeTester.Views.EditAnswer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KnowledgeTester.Views"
+        mc:Ignorable="d"
+        Title="EditAnswer" Height="150" Width="450">
+    <Grid>
+
+        <CheckBox x:Name="IsCorrectCheckBox" IsChecked="{Binding Answer.IsCorrect, Mode=Twoway}" Content="Correct" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+
+
+        <TextBox x:Name="AnswerTextBox" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Height="Auto" Margin="10,18,0,0" Text="{Binding Answer.AnswerText, Mode=Twoway}" VerticalAlignment="Top" Width="272"/>
+        <Button x:Name="SaveAnswerButton" Content="Save Answer" Command="{Binding SaveAnswerCommand}" HorizontalAlignment="Left" Margin="332,27,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</local:WindowViewBase>
