@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KnowledgeTester.Model
 {
@@ -6,6 +7,7 @@ namespace KnowledgeTester.Model
     {
         public Test Test { set; get; }
         public List<UserAnswer> Answers { set; get; }
-        public int Score { set; get; }
+        public decimal Score { set; get; }
+        public DateTime Time { set; get; }
     }
 }

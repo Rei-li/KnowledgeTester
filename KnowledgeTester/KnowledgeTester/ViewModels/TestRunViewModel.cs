@@ -134,6 +134,7 @@ namespace KnowledgeTester.ViewModels
 
         private void OnSaveCommand(object o)
         {
+            _userAnswers.Add(new UserAnswer() { Id = Guid.NewGuid(), Answer = _selectedAnswer, QuestionNumber = Question.Number });
             UserService.SaveUserTest(_test, _userAnswers);
             View.Close();
         }

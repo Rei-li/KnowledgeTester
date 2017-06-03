@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using KnowlageTester.JsonDAL;
@@ -71,11 +72,31 @@ namespace KnowledgeTester.BLL
                 Id = Guid.NewGuid(),
                 Test = test,
                 Answers = answers,
-                Score = 0
-
+                Score = Math.Round(CountPoints(test, answers), 2),
+                Time = DateTime.Now
             });
 
             SaveUser(_currentUser);
+        }
+
+        public decimal CountPoints(Test test, List<UserAnswer> answers)
+        {
+            decimal score = 0;
+            decimal standardPoint = 1;
+            foreach (var question in test.Question)
+            {
+                var number = question.Number;
+                var correctAnswersCount = question.Answers.Count(s => s.IsCorrect);
+                var userAnswers = answers.Where(s => s.QuestionNumber.Equals(number)).ToList();
+                foreach (var answer in userAnswers)
+                {
+                    if (answer.Answer.IsCorrect && correctAnswersCount != 0)
+                    {
+                        score += standardPoint / correctAnswersCount;
+                    }
+                }
+            }
+            return score;
         }
 
 
