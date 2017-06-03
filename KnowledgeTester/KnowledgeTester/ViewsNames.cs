@@ -16,6 +16,7 @@ namespace KnowledgeTester
         public static readonly string EDIT_TASK = "EditTask";
         public static readonly string CREATE_ANSWER = "EditAnswer";
         public static readonly string EDIT_ANSWER = "EditAnswer";
+        public static readonly string USER_TESTS = "UserTests";
 
     }
 }

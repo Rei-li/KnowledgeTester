@@ -9,11 +9,15 @@
 
     <Window.Resources>
         <DataTemplate x:Key="taskTemplate">
+            <WrapPanel HorizontalAlignment="Left" Height="auto" Width="auto">
             <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
                 CornerRadius="2" Padding="5" Margin="5">
                 <TextBlock FontSize="14" FontWeight="Bold"
                        Text="{Binding Task}" />
-            </Border>
+                </Border>
+                <TextBlock FontSize="11" FontWeight="Bold"
+                       Text="{Binding Notes}" />
+            </WrapPanel>
         </DataTemplate>
     </Window.Resources>
 
@@ -28,6 +32,8 @@
         <Button x:Name="EditTaskButton" Content="Edit Task" Command="{Binding EditTaskCommand}" HorizontalAlignment="Left" Margin="340,130,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="DeleteTaskButton" Content="Delete Task" Command="{Binding DeleteTaskCommand}" HorizontalAlignment="Left" Margin="340,160,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="AddTaskButton" Content="Add Task" Command="{Binding AddTaskCommand}" HorizontalAlignment="Left" Margin="340,190,0,0" VerticalAlignment="Top" Width="75"/>
+        
+
 
 
     </Grid>

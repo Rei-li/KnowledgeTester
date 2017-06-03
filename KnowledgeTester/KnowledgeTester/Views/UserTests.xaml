@@ -1,0 +1,23 @@
+﻿<local:WindowViewBase x:Class="KnowledgeTester.Views.UserTests"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KnowledgeTester.Views"
+        mc:Ignorable="d"
+        Title="UserTests" Height="300" Width="300">
+
+    <Grid>
+        
+        <ListView x:Name="TestsListView" ItemsSource="{Binding UserTests, Mode=Twoway}" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="auto">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  Width="auto" Header="Theme" DisplayMemberBinding="{Binding Test.Theme}"/>
+                    <GridViewColumn  Width="auto" Header="Score" DisplayMemberBinding="{Binding Score}"/>
+                    <GridViewColumn  Width="auto" Header="Date" DisplayMemberBinding="{Binding Time}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</local:WindowViewBase>

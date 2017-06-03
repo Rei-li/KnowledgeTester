@@ -51,6 +51,10 @@
   <object id="TestRunViewModel" type="KnowledgeTester.ViewModels.TestRunViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
     <property name="UserService" ref="UserService" />
   </object>
+  
+    <object id="UserTestsViewModel" type="KnowledgeTester.ViewModels.UserTestsViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" init-method="Init" >
+    <property name="UserService" ref="UserService" />
+  </object>
 
 
   <!--Views-->
@@ -79,6 +83,10 @@
   
  <object id="EditAnswer" type="KnowledgeTester.Views.EditAnswer, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="EditAnswerViewModel" />
+  </object>
+  
+ <object id="UserTests" type="KnowledgeTester.Views.UserTests, KnowledgeTester" singleton="false" parent="WindowViewBase">
+    <property name="ViewModel" ref="UserTestsViewModel" />
   </object>
 
 </objects>

@@ -84,6 +84,7 @@
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\TestCreationViewModel.cs" />
     <Compile Include="ViewModels\TestRunViewModel.cs" />
+    <Compile Include="ViewModels\UserTestsViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewsNames.cs" />
     <Compile Include="Views\CreateTest.xaml.cs">
@@ -104,6 +105,9 @@
     </Compile>
     <Compile Include="Views\TestRun.xaml.cs">
       <DependentUpon>TestRun.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserTests.xaml.cs">
+      <DependentUpon>UserTests.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WindowViewBase.cs" />
     <Page Include="MainWindow.xaml">
@@ -139,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TestRun.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserTests.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

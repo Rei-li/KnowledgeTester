@@ -27,7 +27,7 @@
             <MenuItem Header="User">
                 <MenuItem Header="New User" Command="{Binding AddNewUserCommand}" ></MenuItem>
                 <Separator />
-                <MenuItem Header="My Results" ></MenuItem>
+                <MenuItem Header="My Results" Command="{Binding GetUserResultsCommand}" ></MenuItem>
             </MenuItem>
             <MenuItem Header="Test" >
                 <MenuItem Header="New Test"  Command="{Binding AddNewTestCommand}" ></MenuItem>

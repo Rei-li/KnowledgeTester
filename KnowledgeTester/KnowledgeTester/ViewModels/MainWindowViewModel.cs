@@ -77,6 +77,7 @@ namespace KnowledgeTester.ViewModels
 
         public ICommand ExitCommand { get; private set; }
         public ICommand AddNewUserCommand { get; private set; }
+        public ICommand GetUserResultsCommand { get; private set; }
         public ICommand AddNewTestCommand { get; private set; }
 
         public ICommand StartTestCommand { get; private set; }
@@ -90,6 +91,7 @@ namespace KnowledgeTester.ViewModels
         {
             ExitCommand = new Command((p) => Application.Current.Shutdown());
             AddNewUserCommand = new Command((p) => FormsManager.Show(ViewsNames.REGISTER));
+            GetUserResultsCommand = new Command((p) => FormsManager.Show(ViewsNames.USER_TESTS));
             AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST).Closing += MainWindowViewModel_Closing);
 
             StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, View));
