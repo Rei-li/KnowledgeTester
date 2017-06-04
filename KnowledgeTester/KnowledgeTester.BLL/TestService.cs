@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KnowlageTester.JsonDAL;
+using KnowledgeTester.DAL;
 using KnowledgeTester.Model;
+using KnowledgeTester.IDAL;
 
 namespace KnowledgeTester.BLL
 {

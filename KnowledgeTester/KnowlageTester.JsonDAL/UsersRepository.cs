@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using KnowledgeTester.IDAL;
 using KnowledgeTester.Model;
 
 namespace KnowlageTester.JsonDAL

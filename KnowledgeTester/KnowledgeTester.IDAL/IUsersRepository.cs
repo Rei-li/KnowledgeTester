@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using KnowledgeTester.Model;
 
-namespace KnowlageTester.JsonDAL
+namespace KnowledgeTester.IDAL
 {
     public interface IUsersRepository
     {

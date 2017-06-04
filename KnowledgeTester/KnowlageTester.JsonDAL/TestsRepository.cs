@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using KnowledgeTester.IDAL;
 using KnowledgeTester.Model;
 
 namespace KnowlageTester.JsonDAL
 {
-    public class TestsRepository: Repository<Test>, ITestsRepository
+    public class TestsRepository : Repository<Test>, ITestsRepository
     {
         //private readonly Repository<Test> _repo = new Repository<Test>(ConfigurationManager.AppSettings["TestsCollectionFolder"]);
 

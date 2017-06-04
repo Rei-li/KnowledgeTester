@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeTester.JsonDAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeTester.Model", "KnowledgeTester.Model\KnowledgeTester.Model.csproj", "{B6B42ADA-E9B2-4A32-BC7C-FD93F4AAB3ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeTester.IDAL", "KnowledgeTester.IDAL\KnowledgeTester.IDAL.csproj", "{8916FCCF-315C-4833-802C-4A19464F6D8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{B6B42ADA-E9B2-4A32-BC7C-FD93F4AAB3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6B42ADA-E9B2-4A32-BC7C-FD93F4AAB3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6B42ADA-E9B2-4A32-BC7C-FD93F4AAB3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8916FCCF-315C-4833-802C-4A19464F6D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8916FCCF-315C-4833-802C-4A19464F6D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8916FCCF-315C-4833-802C-4A19464F6D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8916FCCF-315C-4833-802C-4A19464F6D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using KnowlageTester.JsonDAL;
+using KnowledgeTester.IDAL;
 using KnowledgeTester.Model;
 
 namespace KnowledgeTester.BLL

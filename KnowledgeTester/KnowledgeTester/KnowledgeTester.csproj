@@ -192,6 +192,10 @@
       <Project>{ef5efe36-a708-4bac-b744-0f95b343950c}</Project>
       <Name>KnowledgeTester.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KnowledgeTester.DAL\KnowledgeTester.DAL.csproj">
+      <Project>{e138d629-4537-414c-b3a6-4c240f19b4e1}</Project>
+      <Name>KnowledgeTester.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KnowledgeTester.Model\KnowledgeTester.Model.csproj">
       <Project>{b6b42ada-e9b2-4a32-bc7c-fd93f4aab3ed}</Project>
       <Name>KnowledgeTester.Model</Name>

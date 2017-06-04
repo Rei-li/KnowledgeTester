@@ -1,0 +1,252 @@
+USE [TesterDb]
+GO
+
+INSERT INTO [dbo].[Test]
+           ([Id]
+           ,[Theme]
+           ,[Author]
+           ,[Version]
+		   ,[Deleted])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'Theme1'
+           ,'NS'
+           ,1
+		   ,0)
+GO
+
+
+INSERT INTO [dbo].[Question]
+           ([Id]
+           ,[TestId]
+           ,[Task]
+           ,[Notes]
+           ,[Number])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815f06'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'task1'
+           ,'notes1'
+           ,1)
+GO
+
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e1b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f06'
+           ,'answer1'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e2b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f06'
+           ,'answer2'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e3b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f06'
+           ,'answer3'
+           ,0)
+GO
+
+
+
+
+
+INSERT INTO [dbo].[Question]
+           ([Id]
+           ,[TestId]
+           ,[Task]
+           ,[Notes]
+           ,[Number])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815f07'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'task2'
+           ,'notes2'
+           ,2)
+GO
+
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e4b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f07'
+           ,'answer2.1'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e5b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f07'
+           ,'answer2.2'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e6b75f06-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f07'
+           ,'answer2.3'
+           ,1)
+GO
+
+
+
+
+
+USE [TesterDb]
+GO
+
+INSERT INTO [dbo].[Test]
+           ([Id]
+           ,[Theme]
+           ,[Author]
+           ,[Version]
+		   ,[Deleted])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815f08'
+           ,'Theme2'
+           ,'NS'
+           ,1
+		   ,0)
+GO
+
+
+INSERT INTO [dbo].[Question]
+           ([Id]
+           ,[TestId]
+           ,[Task]
+           ,[Notes]
+           ,[Number])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815f09'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f08'
+           ,'task1'
+           ,'notes1'
+           ,1)
+GO
+
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e7b75f16-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f09'
+           ,'answer1'
+           ,1)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e8b75f26-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f09'
+           ,'answer2'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e9b75f36-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f09'
+           ,'answer3'
+           ,0)
+GO
+
+
+
+
+
+INSERT INTO [dbo].[Question]
+           ([Id]
+           ,[TestId]
+           ,[Task]
+           ,[Notes]
+           ,[Number])
+     VALUES
+           ('d0b75f06-0195-446f-a263-6a4cbf815c17'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815f08'
+           ,'task2'
+           ,'notes2'
+           ,2)
+GO
+
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e4b75f46-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815c17'
+           ,'answer2.1'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e5b75f56-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815c17'
+           ,'answer2.2'
+           ,0)
+GO
+
+INSERT INTO [dbo].[Answer]
+           ([Id]
+           ,[QuestionId]
+           ,[AnswerText]
+           ,[IsCorrect])
+     VALUES
+           ('e6b75f66-0195-446f-a263-6a4cbf815f05'
+           ,'d0b75f06-0195-446f-a263-6a4cbf815c17'
+           ,'answer2.3'
+           ,1)
+GO
+

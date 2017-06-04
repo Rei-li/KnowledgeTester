@@ -91,8 +91,10 @@ namespace KnowledgeTester.ViewModels
         public override void Init(object data)
         {
             var test = data as Test;
+            
             if (test != null)
             {
+                TestService.GetTest(test.Id);
                 Test = test;
             }
 
