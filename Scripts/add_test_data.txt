@@ -250,3 +250,16 @@ INSERT INTO [dbo].[Answer]
            ,1)
 GO
 
+INSERT INTO [dbo].[User]
+           ([Id]
+           ,[Name]
+           ,[LastName]
+           ,[Login]
+           ,[Password])
+     VALUES
+           ('4941bb63-bfb6-415f-9318-9f6511bca259'
+           ,'ty'
+           ,'ty'
+           ,'ty'
+           ,'698d51a19d8a121ce581499d7b701668')
+GO

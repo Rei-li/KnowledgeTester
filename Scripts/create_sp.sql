@@ -229,4 +229,56 @@ BEGIN
 END
 GO
 
+-- =============================================
+-- Author:		NS
+-- Create date: 04.06.2017
+-- Description: returns data needed to create User instance
+-- =============================================
+CREATE PROCEDURE GetUser @id uniqueidentifier
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT u.*, ut.Id as UserTestId, ut.TestId, ut.Score, ut.Time,  ua.Id as UserAnswerId, ua.QuestionNumber, ua.AnswerId
+	FROM [TesterDb].[dbo].[User] u
+	LEFT JOIN [TesterDb].[dbo].[UserTest] ut on u.Id = ut.UserId
+	LEFT JOIN [TesterDb].[dbo].[UserAnswer] ua on ut.Id = ua.UserTestId
+	WHERE TestId = @id
+	 
+END
+GO
+
+
+-- =============================================
+-- Author:		NS
+-- Create date: 04.06.2017
+-- Description: returns data needed to create User instance
+-- =============================================
+CREATE PROCEDURE GetUserByLoginPassword
+ @login nvarchar(50),
+ @password nvarchar(250)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT u.*, ut.Id as UserTestId, ut.TestId, ut.Score, ut.Time,  ua.Id as UserAnswerId, ua.QuestionNumber, ua.AnswerId
+	FROM [TesterDb].[dbo].[User] u
+	LEFT JOIN [TesterDb].[dbo].[UserTest] ut on u.Id = ut.UserId
+	LEFT JOIN [TesterDb].[dbo].[UserAnswer] ua on ut.Id = ua.UserTestId
+	WHERE Login = @login AND Password = @password
+	 
+END
+GO
+
+
+
+
+
+
 

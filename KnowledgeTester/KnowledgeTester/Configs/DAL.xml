@@ -10,10 +10,14 @@
   <object id="Repository" type="KnowlageTester.JsonDAL.Repository, KnowlageTester.JsonDAL" abstract="true" />
    <object id="RepositorySimple" type="KnowledgeTester.DAL.Repository, KnowledgeTester.DAL" abstract="true" />
 
-  <object id="UsersRepository" type="KnowlageTester.JsonDAL.UsersRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />
+  <!--<object id="UsersRepository" type="KnowlageTester.JsonDAL.UsersRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />-->
   <!--<object id="TestsRepository" type="KnowlageTester.JsonDAL.TestsRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />-->
-  <object id="TestsRepository" type="KnowledgeTester.DAL.TestsRepository, KnowledgeTester.DAL" singleton="true"  />
   <object id="UserTestsRepository" type="KnowlageTester.JsonDAL.UserTestsRepository, KnowlageTester.JsonDAL" singleton="true" parent="Repository" />
+
+  <object id="TestsRepository" type="KnowledgeTester.DAL.TestsRepository, KnowledgeTester.DAL" singleton="true"  />
+  <object id="UsersRepository" type="KnowledgeTester.DAL.UsersRepository, KnowledgeTester.DAL" singleton="true"  >
+    <property name="TestsRepo" ref="TestsRepository" />
+  </object>
 
   
 
