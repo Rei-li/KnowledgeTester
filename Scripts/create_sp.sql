@@ -278,7 +278,94 @@ GO
 
 
 
+-- =============================================
+-- Author:		NS
+-- Create date: 04.06.2017
+-- Description: insert user
+-- =============================================
+CREATE PROCEDURE AddUser
+@id uniqueidentifier,
+@name nvarchar(50),
+@lastName nvarchar(50),
+@login nvarchar(50),
+@password nvarchar(250)
+
+AS
+BEGIN
+
+	INSERT INTO [dbo].[User]
+           ([Id]
+           ,[Name]
+           ,[LastName]
+           ,[Login]
+           ,[Password])
+     VALUES
+           (@id
+           ,@name
+           ,@lastName
+           ,@login
+           ,@password)
+	 
+END
+GO
+
+-- =============================================
+-- Author:		NS
+-- Create date: 05.06.2017
+-- Description: insert user test
+-- =============================================
+CREATE PROCEDURE AddUserTest
+@id uniqueidentifier,
+@testId uniqueidentifier,
+@score decimal(18,0),
+@time datetime,
+@userId uniqueidentifier
+
+AS
+BEGIN
+
+	INSERT INTO [dbo].[UserTest]
+           ([Id]
+           ,[TestId]
+           ,[Score]
+           ,[Time]
+           ,[UserId])
+     VALUES
+           (@id
+           ,@testId
+           ,@score
+           ,@time
+           ,@userId)
+	 
+END
+GO
 
 
+-- =============================================
+-- Author:		NS
+-- Create date: 05.06.2017
+-- Description: insert user answer
+-- =============================================
+CREATE PROCEDURE AddUserAnswer
+@id uniqueidentifier,
+@questionNumber int,
+@userTestId uniqueidentifier,
+@answerId uniqueidentifier
 
 
+AS
+BEGIN
+
+	INSERT INTO [dbo].[UserAnswer]
+           ([Id]
+           ,[QuestionNumber]
+           ,[UserTestId]
+           ,[AnswerId])
+     VALUES
+           (@id
+           ,@questionNumber
+           ,@userTestId
+           ,@answerId)
+	 
+END
+GO
