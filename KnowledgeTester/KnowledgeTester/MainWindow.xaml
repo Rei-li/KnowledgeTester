@@ -27,10 +27,10 @@
             <MenuItem Header="User">
                 <MenuItem Header="New User" Command="{Binding AddNewUserCommand}" ></MenuItem>
                 <Separator />
-                <MenuItem Header="My Results" Command="{Binding GetUserResultsCommand}" ></MenuItem>
+                <MenuItem Header="My Results" Command="{Binding GetUserResultsCommand}" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" ></MenuItem>
             </MenuItem>
             <MenuItem Header="Test" >
-                <MenuItem Header="New Test"  Command="{Binding AddNewTestCommand}" ></MenuItem>
+                <MenuItem Header="New Test"  Command="{Binding AddNewTestCommand}" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}"></MenuItem>
             </MenuItem>
         </Menu>
 
@@ -54,9 +54,9 @@
                 </GridView>
             </ListView.View>-->
         </ListView>
-        <Button x:Name="StartTestButton" Content="Start Test" Command="{Binding StartTestCommand}" HorizontalAlignment="Left" Margin="390,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="EditTestButton" Content="Edit Test" Command="{Binding EditTestCommand}" HorizontalAlignment="Left" Margin="390,130,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="DeleteTestButton" Content="Delete Test" Command="{Binding DeleteTestCommand}" HorizontalAlignment="Left" Margin="390,160,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="StartTestButton" Content="Start Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding StartTestCommand}" HorizontalAlignment="Left" Margin="390,100,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="EditTestButton" Content="Edit Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding EditTestCommand}" HorizontalAlignment="Left" Margin="390,130,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="DeleteTestButton" Content="Delete Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding DeleteTestCommand}" HorizontalAlignment="Left" Margin="390,160,0,0" VerticalAlignment="Top" Width="75"/>
 
 
 

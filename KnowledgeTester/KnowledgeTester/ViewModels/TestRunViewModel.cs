@@ -75,12 +75,18 @@ namespace KnowledgeTester.ViewModels
         }
 
 
-        public ICommand NextCommand { get; private set; }
-        public ICommand SaveCommand { get; private set; }
+        public Command NextCommand { get; private set; }
+        public Command SaveCommand { get; private set; }
 
         public TestRunViewModel()
         {
             CreateCommands();
+            PropertyChanged += TestRunViewModel_PropertyChanged;
+        }
+
+        private void TestRunViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyCanExecuteCommands();
         }
 
         private void SetQuestion(int number)
@@ -111,8 +117,22 @@ namespace KnowledgeTester.ViewModels
 
         private void CreateCommands()
         {
-            NextCommand = new Command(OnNextCommand);
-            SaveCommand = new Command(OnSaveCommand);
+            NextCommand = new Command(OnNextCommand, CanDoOperation);
+            SaveCommand = new Command(OnSaveCommand, CanDoOperation);
+        }
+
+        private void NotifyCanExecuteCommands()
+        {
+            if (NextCommand == null || SaveCommand == null)
+                return;
+
+            NextCommand.NotifyCanExecuteChanged();
+            SaveCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanDoOperation(object obj)
+        {
+            return _selectedAnswer != null;
         }
 
         private void OnNextCommand(object o)

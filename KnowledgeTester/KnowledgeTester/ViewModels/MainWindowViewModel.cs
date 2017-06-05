@@ -80,9 +80,9 @@ namespace KnowledgeTester.ViewModels
         public ICommand GetUserResultsCommand { get; private set; }
         public ICommand AddNewTestCommand { get; private set; }
 
-        public ICommand StartTestCommand { get; private set; }
-        public ICommand EditTestCommand { get; private set; }
-        public ICommand DeleteTestCommand { get; private set; }
+        public Command StartTestCommand { get; private set; }
+        public Command EditTestCommand { get; private set; }
+        public Command DeleteTestCommand { get; private set; }
 
         public ICommand LoginCommand { get; private set; }
         public ICommand LogoutCommand { get; private set; }
@@ -94,14 +94,35 @@ namespace KnowledgeTester.ViewModels
             GetUserResultsCommand = new Command((p) => FormsManager.Show(ViewsNames.USER_TESTS));
             AddNewTestCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TEST).Closing += MainWindowViewModel_Closing);
 
-            StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, View));
-            EditTestCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_TEST, SelectedTest.Id, SelectedTest, View));
-            DeleteTestCommand = new Command(OnDeleteTestCommand);
+            StartTestCommand = new Command((p) => FormsManager.Show(ViewsNames.TEST_RUN, SelectedTest.Id, SelectedTest, View), CanDoOperationWithTest);
+            EditTestCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_TEST, SelectedTest.Id, SelectedTest, View), CanDoOperationWithTest);
+            DeleteTestCommand = new Command(OnDeleteTestCommand, CanDoOperationWithTest);
 
             LoginCommand = new Command(OnLoginCommand);
             LogoutCommand = new Command(OnLogoutCommand);
             
             IsLoginButtonVisible = true;
+            PropertyChanged += MainWindowViewModel_PropertyChanged;
+        }
+
+        private void MainWindowViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            NotifyCanExecuteCommands();
+        }
+
+        private void NotifyCanExecuteCommands()
+        {
+            if (StartTestCommand == null || EditTestCommand == null || DeleteTestCommand == null)
+                return;
+
+            StartTestCommand.NotifyCanExecuteChanged();
+            EditTestCommand.NotifyCanExecuteChanged();
+            DeleteTestCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanDoOperationWithTest(object obj)
+        {
+            return SelectedTest != null;
         }
 
         private void OnDeleteTestCommand(object o)

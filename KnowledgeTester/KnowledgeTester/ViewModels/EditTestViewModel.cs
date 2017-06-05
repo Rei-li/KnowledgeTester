@@ -18,8 +18,8 @@ namespace KnowledgeTester.ViewModels
 
         public ICommand SaveTestCommand { get; private set; }
 
-        public ICommand EditTaskCommand { get; private set; }
-        public ICommand DeleteTaskCommand { get; private set; }
+        public Command EditTaskCommand { get; private set; }
+        public Command DeleteTaskCommand { get; private set; }
         public ICommand AddTaskCommand { get; private set; }
 
         private ObservableCollection<Question> _questions;
@@ -61,9 +61,29 @@ namespace KnowledgeTester.ViewModels
         {
 
             AddTaskCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_TASK, _newQuestion.Id, _newQuestion, View).Closing += EditTaskView_Closing);
-            EditTaskCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_TASK, SelectedQuestion.Id, SelectedQuestion, View));
-            DeleteTaskCommand = new Command(OnDeleteTestCommand);
+            EditTaskCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_TASK, SelectedQuestion.Id, SelectedQuestion, View), CanDoOperation);
+            DeleteTaskCommand = new Command(OnDeleteTestCommand, CanDoOperation);
             SaveTestCommand = new Command(OnSaveTestCommand);
+            PropertyChanged += EditTestViewModel_PropertyChanged;
+        }
+
+        private void EditTestViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyCanExecuteCommands();
+        }
+
+        private void NotifyCanExecuteCommands()
+        {
+            if (EditTaskCommand == null || DeleteTaskCommand == null)
+                return;
+
+            EditTaskCommand.NotifyCanExecuteChanged();
+            DeleteTaskCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanDoOperation(object obj)
+        {
+            return SelectedQuestion != null;
         }
 
         private void EditTaskView_Closing(object sender, System.ComponentModel.CancelEventArgs e)

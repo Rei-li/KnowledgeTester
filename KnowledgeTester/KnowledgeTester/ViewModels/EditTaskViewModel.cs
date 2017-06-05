@@ -17,8 +17,8 @@ namespace KnowledgeTester.ViewModels
 
         public ICommand SaveTaskCommand { get; private set; }
 
-        public ICommand EditAnswerCommand { get; private set; }
-        public ICommand DeleteAnswerCommand { get; private set; }
+        public Command EditAnswerCommand { get; private set; }
+        public Command DeleteAnswerCommand { get; private set; }
         public ICommand AddAnswerCommand { get; private set; }
 
         private ObservableCollection<Answer> _answers;
@@ -60,9 +60,29 @@ namespace KnowledgeTester.ViewModels
         {
 
             AddAnswerCommand = new Command((p) => FormsManager.Show(ViewsNames.CREATE_ANSWER, _newAnswer.Id, _newAnswer, View).Closing += EditTaskView_Closing);
-            EditAnswerCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_ANSWER, SelectedAnswer.Id, SelectedAnswer, View));
-            DeleteAnswerCommand = new Command(OnDeleteAnswerCommand);
+            EditAnswerCommand = new Command((p) => FormsManager.Show(ViewsNames.EDIT_ANSWER, SelectedAnswer.Id, SelectedAnswer, View), CanDoOperation);
+            DeleteAnswerCommand = new Command(OnDeleteAnswerCommand, CanDoOperation);
             SaveTaskCommand = new Command(OnSaveTaskCommand);
+            PropertyChanged += EditTaskViewModel_PropertyChanged;
+        }
+
+        private void EditTaskViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            NotifyCanExecuteCommands();
+        }
+
+        private void NotifyCanExecuteCommands()
+        {
+            if (EditAnswerCommand == null || DeleteAnswerCommand == null )
+                return;
+
+            EditAnswerCommand.NotifyCanExecuteChanged();
+            DeleteAnswerCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanDoOperation(object obj)
+        {
+            return SelectedAnswer != null;
         }
 
         private void EditTaskView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
