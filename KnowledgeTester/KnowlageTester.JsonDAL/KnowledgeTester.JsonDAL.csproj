@@ -45,12 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserTestsRepository.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestsRepository.cs" />
     <Compile Include="UsersRepository.cs" />
-    <Compile Include="UserTestsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -27,11 +27,6 @@
   <object id="RegistrationViewModel" type="KnowledgeTester.ViewModels.RegistrationViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
     <property name="UserService" ref="UserService" />
   </object>
-
-  <object id="TestCreationViewModel" type="KnowledgeTester.ViewModels.TestCreationViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
-    <property name="UserService" ref="UserService" />
-    <property name="TestService" ref="TestService" />
-  </object>
   
   <object id="EditTestViewModel" type="KnowledgeTester.ViewModels.EditTestViewModel, KnowledgeTester" parent="ViewModelBase" singleton="false" >
     <property name="UserService" ref="UserService" />
@@ -63,10 +58,6 @@
 
   <object id="Register" type="KnowledgeTester.Views.Register, KnowledgeTester" singleton="false" parent="WindowViewBase">
     <property name="ViewModel" ref="RegistrationViewModel" />
-  </object>
-
-  <object id="CreateTest" type="KnowledgeTester.Views.CreateTest, KnowledgeTester" singleton="false" parent="WindowViewBase">
-    <property name="ViewModel" ref="TestCreationViewModel" />
   </object>
   
   <object id="EditTest" type="KnowledgeTester.Views.EditTest, KnowledgeTester" singleton="false" parent="WindowViewBase">
