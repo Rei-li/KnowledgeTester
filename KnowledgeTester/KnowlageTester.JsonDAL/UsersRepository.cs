@@ -27,7 +27,7 @@ namespace KnowlageTester.JsonDAL
             return null;
         }
 
-        public IList<User> GetUsers()
+        private IList<User> GetUsers()
         {
             return GetAllItems();
         }

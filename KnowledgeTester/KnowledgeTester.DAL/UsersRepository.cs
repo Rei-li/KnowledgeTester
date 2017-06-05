@@ -15,16 +15,27 @@ namespace KnowledgeTester.DAL
     {
         public ITestsRepository TestsRepo { set; get; }
 
-        public User GetUser(Guid id)
+
+        int IndexId { set; get; }
+        int IndexName { set; get; }
+        int IndexLastName { set; get; }
+        int IndexLogin { set; get; }
+        int IndexPassword { set; get; }
+        int IndexUserTestId { set; get; }
+        int IndexTestId { set; get; }
+        int IndexScore { set; get; }
+        int IndexTime { set; get; }
+        int IndexUserAnswerId { set; get; }
+        int IndexQuestionNumber { set; get; }
+        int IndexAnswerId { set; get; }
+
+
+
+        private User GetUser(Guid id)
         {
-            string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            User user = null;
-            using (SqlConnection connection = new SqlConnection())
+            User user;
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                connection.ConnectionString = _connectionString;
-
-
-
                 var cmd = new SqlCommand("GetUser",
                                          connection);
                 cmd.Parameters.AddWithValue("@id", id);
@@ -33,96 +44,34 @@ namespace KnowledgeTester.DAL
                 connection.Open();
                 var reader = cmd.ExecuteReader();
                     
-                int indexId = reader.GetOrdinal("Id");
-                int indexName = reader.GetOrdinal("Name");
-                int indexLastName = reader.GetOrdinal("LastName");
-                int indexLogin = reader.GetOrdinal("Login");
-                int indexPassword = reader.GetOrdinal("Password");
-                int indexUserTestId = reader.GetOrdinal("UserTestId");
-                int indexTestId = reader.GetOrdinal("TestId");
-                int indexScore = reader.GetOrdinal("Score");
-                int indexTime = reader.GetOrdinal("Time");
-                int indexUserAnswerId = reader.GetOrdinal("UserAnswerId");
-                int indexQuestionNumber = reader.GetOrdinal("QuestionNumber");
-                int indexAnswerId = reader.GetOrdinal("AnswerId");
+                 SetReaderIndexes(reader);
 
 
-
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        if (user == null)
-                        {
-                            user = new User()
-                            {
-                                Id = reader.GetGuid(indexId),
-                                Name = reader.GetString(indexName),
-                                LastName = reader.GetString(indexLastName),
-                                Login = reader.GetString(indexLogin),
-                                Password = reader.GetString(indexPassword),
-                                TakenTests =  new List<UserTest>()
-
-
-                            };
-                        }
-
-                        if (!(reader[indexTestId] is System.DBNull))
-                        {
-
-                            var tests = user.TakenTests.Where(q => q.Id == reader.GetGuid(indexUserTestId)).ToList();
-                            if (!tests.Any())
-                            {
-                                var test = TestsRepo.GetTest(reader.GetGuid(indexTestId));
-
-                                Answer answer = null;
-                                foreach (var a in from q in test.Question
-                                    where q.Number == reader.GetInt32(indexQuestionNumber)
-                                    from a in q.Answers
-                                    where a.Id == reader.GetGuid(indexAnswerId)
-                                    select a)
-                                {
-                                    answer = a;
-                                }
-
-                                user.TakenTests.Add(new UserTest()
-                                {
-                                    Id = reader.GetGuid(indexUserTestId),
-                                    Test = test,
-                                    Score = reader.GetDecimal(indexScore),
-                                    Time = reader.GetDateTimeOffset(indexTime).DateTime,
-
-                                    Answers = new List<UserAnswer>()
-                                    {
-                                        new UserAnswer()
-                                        {
-                                            Id = reader.GetGuid(indexUserAnswerId),
-                                            QuestionNumber = reader.GetInt32(indexQuestionNumber),
-                                            Answer = answer
-
-                                        }
-                                    }
-                                });
-
-                            }
-
-
-                        }
-
-
-                    }
-
-                }
+                user = User(reader);
 
             }
             return user;
         }
 
+        private void SetReaderIndexes(SqlDataReader reader)
+        {
+            IndexId = reader.GetOrdinal("Id");
+            IndexName = reader.GetOrdinal("Name");
+            IndexLastName = reader.GetOrdinal("LastName");
+            IndexLogin = reader.GetOrdinal("Login");
+            IndexPassword = reader.GetOrdinal("Password");
+            IndexUserTestId = reader.GetOrdinal("UserTestId");
+            IndexTestId = reader.GetOrdinal("TestId");
+            IndexScore = reader.GetOrdinal("Score");
+            IndexTime = reader.GetOrdinal("Time");
+            IndexUserAnswerId = reader.GetOrdinal("UserAnswerId");
+            IndexQuestionNumber = reader.GetOrdinal("QuestionNumber");
+            IndexAnswerId = reader.GetOrdinal("AnswerId");
+        }
+
         public User GetUserByLoginPassword(string login, string password)
         {
-            string _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            User user = null;
+            User user;
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = _connectionString;
@@ -138,91 +87,68 @@ namespace KnowledgeTester.DAL
                 connection.Open();
                 var reader = cmd.ExecuteReader();
 
-                int indexId = reader.GetOrdinal("Id");
-                int indexName = reader.GetOrdinal("Name");
-                int indexLastName = reader.GetOrdinal("LastName");
-                int indexLogin = reader.GetOrdinal("Login");
-                int indexPassword = reader.GetOrdinal("Password");
-                int indexUserTestId = reader.GetOrdinal("UserTestId");
-                int indexTestId = reader.GetOrdinal("TestId");
-                int indexScore = reader.GetOrdinal("Score");
-                int indexTime = reader.GetOrdinal("Time");
-                int indexUserAnswerId = reader.GetOrdinal("UserAnswerId");
-                int indexQuestionNumber = reader.GetOrdinal("QuestionNumber");
-                int indexAnswerId = reader.GetOrdinal("AnswerId");
-
-
-
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        if (user == null)
-                        {
-                            user = new User()
-                            {
-                                Id = reader.GetGuid(indexId),
-                                Name = reader.GetString(indexName),
-                                LastName = reader.GetString(indexLastName),
-                                Login = reader.GetString(indexLogin),
-                                Password = reader.GetString(indexPassword),
-                                TakenTests = new List<UserTest>()
-
-
-                            };
-                        }
-                        if (!(reader[indexTestId] is System.DBNull))
-                        {
-
-                            var tests = user.TakenTests.Where(q => q.Id == reader.GetGuid(indexUserTestId)).ToList();
-                            if (!tests.Any())
-                            {
-                                var test = TestsRepo.GetTest(reader.GetGuid(indexTestId));
-
-                                Answer answer = null;
-                                foreach (var a in from q in test.Question
-                                    where q.Number == reader.GetInt32(indexQuestionNumber)
-                                    from a in q.Answers
-                                    where a.Id == reader.GetGuid(indexAnswerId)
-                                    select a)
-                                {
-                                    answer = a;
-                                }
-
-                                user.TakenTests.Add(new UserTest()
-                                {
-                                    Id = reader.GetGuid(indexUserTestId),
-                                    Test = test,
-                                    Score = reader.GetDecimal(indexScore),
-                                    Time = reader.GetDateTimeOffset(indexTime).DateTime,
-
-                                    Answers = new List<UserAnswer>()
-                                    {
-                                        new UserAnswer()
-                                        {
-                                            Id = reader.GetGuid(indexUserAnswerId),
-                                            QuestionNumber = reader.GetInt32(indexQuestionNumber),
-                                            Answer = answer
-
-                                        }
-                                    }
-                                });
-
-                            }
-
-                        }
-                    }
-
-                }
+                SetReaderIndexes(reader);
+                user = User(reader);
 
             }
             return user;
         }
 
-        public IList<User> GetUsers()
+        private User User(SqlDataReader reader)
         {
-            throw new NotImplementedException();
+            User user = null;
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    user = new User()
+                    {
+                        Id = reader.GetGuid(IndexId),
+                        Name = reader.GetString(IndexName),
+                        LastName = reader.GetString(IndexLastName),
+                        Login = reader.GetString(IndexLogin),
+                        Password = reader.GetString(IndexPassword),
+                        TakenTests = new List<UserTest>()
+                    };
+
+                    if (!(reader[IndexTestId] is System.DBNull))
+                    {
+                        var tests = user.TakenTests.Where(q => q.Id == reader.GetGuid(IndexUserTestId)).ToList();
+                        if (!tests.Any())
+                        {
+                            var test = TestsRepo.GetTest(reader.GetGuid(IndexTestId));
+
+                            Answer answer = null;
+                            foreach (var a in from q in test.Question
+                                where q.Number == reader.GetInt32(IndexQuestionNumber)
+                                from a in q.Answers
+                                where a.Id == reader.GetGuid(IndexAnswerId)
+                                select a)
+                            {
+                                answer = a;
+                            }
+
+                            user.TakenTests.Add(new UserTest()
+                            {
+                                Id = reader.GetGuid(IndexUserTestId),
+                                Test = test,
+                                Score = reader.GetDecimal(IndexScore),
+                                Time = (DateTime) reader[IndexTime],
+                                Answers = new List<UserAnswer>()
+                                {
+                                    new UserAnswer()
+                                    {
+                                        Id = reader.GetGuid(IndexUserAnswerId),
+                                        QuestionNumber = reader.GetInt32(IndexQuestionNumber),
+                                        Answer = answer
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+            return user;
         }
 
         public void SaveUser(User user)
@@ -230,21 +156,11 @@ namespace KnowledgeTester.DAL
             var dbUser = GetUser(user.Id);
             if (dbUser == null)
             {
-                using (SqlConnection connection = new SqlConnection())
+                using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    connection.ConnectionString = _connectionString;
-                    
-                    var cmd = new SqlCommand("AddUser",
-                        connection);
-                    cmd.Parameters.AddWithValue("@id", user.Id);
-                    cmd.Parameters.AddWithValue("@name", user.Name);
-                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
-                    cmd.Parameters.AddWithValue("@login", user.Login);
-                    cmd.Parameters.AddWithValue("@password", user.Password);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
                     connection.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlCommand cmd = connection.CreateCommand();
+                    ExecuteAddUserCmd(user, cmd);
                 }
 
             }
@@ -276,26 +192,11 @@ namespace KnowledgeTester.DAL
 
                     try
                     {
-                        command.CommandText = "AddUserTest";
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@id", newUserTest.Id);
-                        command.Parameters.AddWithValue("@testId", newUserTest.Test.Id);
-                        command.Parameters.AddWithValue("@score", newUserTest.Score);
-                        command.Parameters.AddWithValue("@time", newUserTest.Time);
-                        command.Parameters.AddWithValue("@userId", user.Id);
-                        command.ExecuteNonQuery();
+                        ExecuteAddUserTestCmd(user, command, newUserTest);
 
                         foreach (var answer in newUserTest.Answers)
                         {
-                            command.CommandText = "AddUserAnswer";
-                            command.CommandType = CommandType.StoredProcedure;
-                            command.Parameters.Clear();
-                            command.Parameters.AddWithValue("@id", answer.Id);
-                            command.Parameters.AddWithValue("@questionNumber", answer.QuestionNumber);
-                            command.Parameters.AddWithValue("@userTestId", newUserTest.Id);
-                            command.Parameters.AddWithValue("@answerId", answer.Answer.Id);
-                            command.ExecuteNonQuery();
-
+                            ExecuteAddUserAnswerCmd(command, answer, newUserTest);
                         }
 
                         // Commit the transaction.
@@ -323,6 +224,42 @@ namespace KnowledgeTester.DAL
             }
 
         }
+        }
+
+        private static void ExecuteAddUserCmd(User user, SqlCommand cmd)
+        {
+            cmd.CommandText = "AddUser";
+            cmd.Parameters.AddWithValue("@id", user.Id);
+            cmd.Parameters.AddWithValue("@name", user.Name);
+            cmd.Parameters.AddWithValue("@lastName", user.LastName);
+            cmd.Parameters.AddWithValue("@login", user.Login);
+            cmd.Parameters.AddWithValue("@password", user.Password);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+        }
+
+        private static void ExecuteAddUserAnswerCmd(SqlCommand command, UserAnswer answer, UserTest newUserTest)
+        {
+            command.CommandText = "AddUserAnswer";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.Clear();
+            command.Parameters.AddWithValue("@id", answer.Id);
+            command.Parameters.AddWithValue("@questionNumber", answer.QuestionNumber);
+            command.Parameters.AddWithValue("@userTestId", newUserTest.Id);
+            command.Parameters.AddWithValue("@answerId", answer.Answer.Id);
+            command.ExecuteNonQuery();
+        }
+
+        private static void ExecuteAddUserTestCmd(User user, SqlCommand command, UserTest newUserTest)
+        {
+            command.CommandText = "AddUserTest";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@id", newUserTest.Id);
+            command.Parameters.AddWithValue("@testId", newUserTest.Test.Id);
+            command.Parameters.AddWithValue("@score", newUserTest.Score);
+            command.Parameters.AddWithValue("@time", newUserTest.Time);
+            command.Parameters.AddWithValue("@userId", user.Id);
+            command.ExecuteNonQuery();
         }
     }
 }
