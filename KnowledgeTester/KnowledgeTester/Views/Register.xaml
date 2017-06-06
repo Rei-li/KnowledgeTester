@@ -20,7 +20,7 @@
         <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Margin="0,210,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
         <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="30" Margin="105,210,0,0" TextWrapping="Wrap" Text="{Binding Password}" VerticalAlignment="Top" Width="170"/>
 
-        <Button x:Name="SubmitButton" Content="Submit" HorizontalAlignment="Left" Margin="200,265,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddUserCommand}"/>
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="SubmitButton" Content="Submit"  Margin="200,265,0,0"  Command="{Binding AddUserCommand}"/>
 
     </Grid>
 </local:WindowViewBase>

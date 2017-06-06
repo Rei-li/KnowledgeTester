@@ -8,17 +8,7 @@
         Title="EditTest" Height="388.541" Width="447.123">
 
     <Window.Resources>
-        <DataTemplate x:Key="taskTemplate">
-            <WrapPanel HorizontalAlignment="Left" Height="auto" Width="auto">
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-                CornerRadius="2" Padding="5" Margin="5">
-                <TextBlock FontSize="14" FontWeight="Bold"
-                       Text="{Binding Task}" />
-                </Border>
-                <TextBlock FontSize="11" FontWeight="Bold"
-                       Text="{Binding Notes}" />
-            </WrapPanel>
-        </DataTemplate>
+        
     </Window.Resources>
 
     <Grid>
@@ -26,12 +16,12 @@
         <Label x:Name="ThemeLabel" Content="Theme" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="30" Width="80"/>
         <TextBox x:Name="ThemeTextBox" Text ="{Binding Test.Theme, Mode=Twoway}"  HorizontalAlignment="Left" Height="30" Margin="105,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170"/>
 
-        <ListView x:Name="TestsListView" ItemsSource="{Binding Questions, Mode=Twoway}" SelectedItem="{Binding SelectedQuestion, Mode=Twoway}" ItemTemplate="{StaticResource taskTemplate}"  HorizontalAlignment="Left" Height="204" Margin="52,90,0,0" VerticalAlignment="Top" Width="248"/>
+        <ListView  Style="{StaticResource List}" x:Name="TestsListView" ItemsSource="{Binding Questions, Mode=Twoway}" SelectedItem="{Binding SelectedQuestion, Mode=Twoway}" ItemTemplate="{StaticResource QuestionTemplate}"   Margin="52,90,0,0"/>
 
-        <Button x:Name="SaveTestButton" Content="Save Test" Command="{Binding SaveTestCommand}" HorizontalAlignment="Left" Margin="340,30,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="EditTaskButton" Content="Edit Task" Command="{Binding EditTaskCommand}" HorizontalAlignment="Left" Margin="340,130,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="DeleteTaskButton" Content="Delete Task" Command="{Binding DeleteTaskCommand}" HorizontalAlignment="Left" Margin="340,160,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="AddTaskButton" Content="Add Task" Command="{Binding AddTaskCommand}" HorizontalAlignment="Left" Margin="340,190,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="SaveTestButton" Content="Save Test" Command="{Binding SaveTestCommand}"  Margin="340,30,0,0" />
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="EditTaskButton" Content="Edit Task" Command="{Binding EditTaskCommand}"  Margin="340,130,0,0" />
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="DeleteTaskButton" Content="Delete Task" Command="{Binding DeleteTaskCommand}" Margin="340,160,0,0"/>
+        <Button  Style="{StaticResource ActionButtonStyle}"  x:Name="AddTaskButton" Content="Add Task" Command="{Binding AddTaskCommand}"  Margin="340,190,0,0" />
         
 
 

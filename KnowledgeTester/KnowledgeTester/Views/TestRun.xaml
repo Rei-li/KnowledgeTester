@@ -6,28 +6,22 @@
       xmlns:local="clr-namespace:KnowledgeTester.Views"
       xmlns:converters="clr-namespace:KnowledgeTester.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="726.19" d:DesignWidth="532.229"
+      d:DesignHeight="500" d:DesignWidth="530"
       Title="TestRun">
     <Window.Resources>
-        <DataTemplate x:Key="taskTemplate">
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-                CornerRadius="2" Padding="5" Margin="5">
-                <TextBlock FontSize="14" FontWeight="Bold"
-                       Text="{Binding AnswerText}" />
-            </Border>
-        </DataTemplate>
+        
     </Window.Resources>
     <Grid>
         <Grid.Resources>
             <converters:BoolToVisibleOrHidden x:Key="BoolToVisConverter"/>
         </Grid.Resources>
-        <Label x:Name="TestThemeLabel" Content="{Binding Theme , Mode=Twoway}" HorizontalAlignment="Left" Margin="70,41,0,0" VerticalAlignment="Top" Width="400" Height="31"/>
-        <Label x:Name="TaskTextBlock" HorizontalAlignment="Left" Margin="10,90,0,0"  Content="{Binding Question.Task, Mode=Twoway}" VerticalAlignment="Top" Width="500" Height="60"/>
-        <Label x:Name="TaskNotesTextBlock" HorizontalAlignment="Left" Margin="10,160,0,0"  Content="{Binding Question.Notes, Mode=Twoway}" VerticalAlignment="Top" Width="500" Height="40"/>
+        <Label x:Name="TestThemeLabel" Content="{Binding Theme , Mode=Twoway}" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top" Width="auto" Height="auto"/>
+        <Label x:Name="TaskTextBlock" HorizontalAlignment="Left" Margin="10,70,0,0"  Content="{Binding Question.Task, Mode=Twoway}" VerticalAlignment="Top" Width="auto" Height="auto"/>
+        <Label x:Name="TaskNotesTextBlock" HorizontalAlignment="Left" Margin="10,110,0,0"  Content="{Binding Question.Notes, Mode=Twoway}" VerticalAlignment="Top" Width="auto" Height="auto"/>
 
-        <ListView x:Name="TestsListView" ItemsSource="{Binding Answers, Mode=Twoway}" SelectedItem="{Binding SelectedAnswer, Mode=Twoway}" ItemTemplate="{StaticResource taskTemplate}"  HorizontalAlignment="Left" Height="204" Margin="70,220,0,0" VerticalAlignment="Top" Width="400"/>
-        <Button x:Name="NextButton" Visibility="{Binding IsNextButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding NextCommand}" Content="Next" HorizontalAlignment="Left" Height="28" Margin="370,480,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="SaveButton" Visibility="{Binding IsSaveButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Height="28" Margin="370,480,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListView  Style="{StaticResource List}" x:Name="TestsListView" ItemsSource="{Binding Answers, Mode=Twoway}" SelectedItem="{Binding SelectedAnswer, Mode=Twoway}" ItemTemplate="{StaticResource AnswerTemplate}"  Margin="45,161,0,0" />
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="NextButton" Visibility="{Binding IsNextButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding NextCommand}" Content="Next"   Margin="370,395,0,0" />
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="SaveButton" Visibility="{Binding IsSaveButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding SaveCommand}" Content="Save"   Margin="370,395,0,0" />
 
     </Grid>
 </local:WindowViewBase>

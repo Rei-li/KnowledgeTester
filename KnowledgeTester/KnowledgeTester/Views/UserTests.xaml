@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KnowledgeTester.Views"
         mc:Ignorable="d"
-        Title="UserTests">
+        Title="UserTests" d:DesignWidth="400" >
 
     <Grid>
-        
-        <ListView x:Name="TestsListView" ItemsSource="{Binding UserTests, Mode=Twoway}" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="auto">
+
+        <ListView  Style="{StaticResource List}" x:Name="TestsListView" ItemsSource="{Binding UserTests, Mode=Twoway}" Width="auto">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  Width="auto" Header="Theme" DisplayMemberBinding="{Binding Test.Theme}"/>

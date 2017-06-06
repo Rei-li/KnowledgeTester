@@ -12,6 +12,6 @@
 
 
         <TextBox x:Name="AnswerTextBox" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Left" Height="Auto" Margin="10,18,0,0" Text="{Binding Answer.AnswerText, Mode=Twoway}" VerticalAlignment="Top" Width="272"/>
-        <Button x:Name="SaveAnswerButton" Content="Save Answer" Command="{Binding SaveAnswerCommand}" HorizontalAlignment="Left" Margin="332,27,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button  Style="{StaticResource ActionButtonStyle}" x:Name="SaveAnswerButton" Content="Save Answer" Command="{Binding SaveAnswerCommand}"  Margin="332,27,0,0"/>
     </Grid>
 </local:WindowViewBase>

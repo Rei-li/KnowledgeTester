@@ -7,16 +7,9 @@
         xmlns:views="clr-namespace:KnowledgeTester.Views"
         xmlns:converters="clr-namespace:KnowledgeTester.Converters"
         mc:Ignorable="d"
-        Title="Knowledge Tester" Height="350" Width="525">
+        Title="Knowledge Tester" Height="350" Width="535">
 
     <Window.Resources>
-        <DataTemplate x:Key="taskTemplate">
-            <Border Name="border" BorderBrush="Aqua" BorderThickness="1"
-                CornerRadius="2" Padding="5" Margin="5">
-                <TextBlock FontSize="14" FontWeight="Bold"
-                       Text="{Binding Theme}" />
-            </Border>
-        </DataTemplate>
     </Window.Resources>
 
     <Grid>
@@ -40,35 +33,16 @@
         <!--TODO: add PasswordBox -->
         <Label x:Name="PasswordLabel" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Password" HorizontalAlignment="Left" Height="30" Margin="300,0,0,0" VerticalAlignment="Top" Width="60"/>
         <TextBox x:Name="PasswordTextBox" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Height="30" Margin="360,0,0,0" TextWrapping="Wrap" Text="{Binding Password}" VerticalAlignment="Top" Width="80"/>
-        <!--<PasswordBox  x:Name="PasswordTextBox" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" HorizontalAlignment="Left" Height="30" Margin="360,0,0,0"  Password="{Binding Password}" VerticalAlignment="Top" Width="80"/>-->
 
-        <Button x:Name="LoginButton" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LoginCommand}" Content="Login" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
+        <Button x:Name="LoginButton" Style="{StaticResource ActionButtonStyle}" Visibility="{Binding IsLoginButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LoginCommand}" Content="Login" Margin="450,5,0,0" />
 
-        <Label x:Name="HalloLabel" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Hallo, " HorizontalAlignment="Left" Height="30" Margin="200,0,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label x:Name="HalloLabel" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="Hello, "  HorizontalAlignment="Left" Height="30" Margin="200,0,0,0" VerticalAlignment="Top" Width="40"/>
         <Label x:Name="UserNameLabel" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}" Content="{Binding CurrentUser.Name, Mode=Twoway}" HorizontalAlignment="Left" Height="30" Margin="240,0,0,0" VerticalAlignment="Top" Width="40"/>
-        <Button x:Name="LogoutButton" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LogoutCommand}" Content="Logout" HorizontalAlignment="Left" Margin="450,5,0,0" VerticalAlignment="Top" Width="60" Height="20"/>
-        <ListView x:Name="TestsListView" ItemsSource="{Binding AvailableTests, Mode=Twoway}" SelectedItem="{Binding SelectedTest, Mode=Twoway}" ItemTemplate="{StaticResource taskTemplate}"  HorizontalAlignment="Left" Height="204" Margin="52,90,0,0" VerticalAlignment="Top" Width="248">
-            <!--<ListView.View >
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>-->
-        </ListView>
-        <Button x:Name="StartTestButton" Content="Start Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding StartTestCommand}" HorizontalAlignment="Left" Margin="390,100,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="EditTestButton" Content="Edit Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding EditTestCommand}" HorizontalAlignment="Left" Margin="390,130,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="DeleteTestButton" Content="Delete Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding DeleteTestCommand}" HorizontalAlignment="Left" Margin="390,160,0,0" VerticalAlignment="Top" Width="75"/>
-
-
-
-        <!--<ListView x:Name="TestsListView" HorizontalAlignment="Left" Height="250" VerticalAlignment="Top" Width="450" Margin="35,60,0,0">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>-->
-
-
+        <Button x:Name="LogoutButton" Style="{StaticResource ActionButtonStyle}" Visibility="{Binding IsLogoutButtonVisible, Mode=Twoway, Converter={StaticResource BoolToVisConverter}}"  Command="{Binding LogoutCommand}" Content="Logout"  Margin="450,5,0,0"/>
+        <ListView x:Name="TestsListView" Style="{StaticResource List}" ItemsSource="{Binding AvailableTests, Mode=Twoway}" SelectedItem="{Binding SelectedTest, Mode=Twoway}" ItemTemplate="{StaticResource TaskTemplate}"  Margin="52,90,0,0" />
+        <Button x:Name="StartTestButton" Style="{StaticResource ActionButtonStyle}" Content="Start Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding StartTestCommand}"  Margin="390,100,0,0" />
+        <Button x:Name="EditTestButton" Style="{StaticResource ActionButtonStyle}"  Content="Edit Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding EditTestCommand}" Margin="390,130,0,0"/>
+        <Button x:Name="DeleteTestButton" Style="{StaticResource ActionButtonStyle}" Content="Delete Test" IsEnabled="{Binding IsLogoutButtonVisible, Mode=Twoway}" Command="{Binding DeleteTestCommand}"  Margin="390,160,0,0"  />
 
     </Grid>
 </views:WindowViewBase>
